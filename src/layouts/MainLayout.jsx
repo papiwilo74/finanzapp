@@ -25,7 +25,7 @@ export default function MainLayout({ onLogout }) {
     { path: '/categorias', Icon: PieChart, label: 'Categorías' },
     { path: '/presupuestos', Icon: Wallet, label: 'Presupuestos' },
     { path: '/metas', Icon: Target, label: 'Metas' },
-    { path: '/asistente', Icon: Sparkles, label: 'Asistente IA' },
+    //{ path: '/asistente', Icon: Sparkles, label: 'Asistente IA' },
   ]
   const isActive = (p) => p === '/' ? location.pathname === '/' : location.pathname.startsWith(p)
 

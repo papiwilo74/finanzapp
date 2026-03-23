@@ -33,7 +33,8 @@ function AppRoutes() {
         <Route path="categorias" element={<Categorias />} />
         <Route path="presupuestos" element={<Presupuestos />} />
         <Route path="metas" element={<Metas />} />
-        <Route path="asistente" element={<Asistente />} />
+        
+
       </Route>
     </Routes>
   )
