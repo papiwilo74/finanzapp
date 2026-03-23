@@ -32,16 +32,13 @@ export default function MainLayout({ onLogout }) {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: D.pageBg, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', transition: 'background 0.3s' }}>
 
-      {/* Sidebar */}
       <aside style={{ width: 220, background: D.bg, borderRight: `1px solid ${D.border}`, padding: '16px 10px', display: 'flex', flexDirection: 'column', position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 20, transition: 'all 0.3s' }}>
 
-        {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '2px 8px', marginBottom: 20, paddingBottom: 16, borderBottom: `1px solid ${D.border}` }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: D.accent, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Wallet size={14} color="#fff" /></div>
           <span style={{ fontWeight: 700, fontSize: 14, color: D.text, letterSpacing: '-0.3px' }}>FinanzApp</span>
         </div>
 
-        {/* Filtro de mes */}
         <div style={{ padding: '0 6px', marginBottom: 16 }}>
           <label style={{ fontSize: 9, fontWeight: 700, color: D.textLight, textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 5 }}>Período</label>
           <div style={{ position: 'relative' }}>
@@ -52,7 +49,6 @@ export default function MainLayout({ onLogout }) {
           </div>
         </div>
 
-        {/* Nav */}
         <nav style={{ flex: 1 }}>
           {navItems.map(({ path, Icon, label }) => {
             const active = isActive(path)
@@ -71,13 +67,18 @@ export default function MainLayout({ onLogout }) {
           })}
         </nav>
 
-        {/* Footer sidebar */}
         <div style={{ borderTop: `1px solid ${D.border}`, paddingTop: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px', marginBottom: 6 }}>
-            <div style={{ width: 28, height: 28, borderRadius: '50%', background: D.accentBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: D.accent, flexShrink: 0 }}>{user.avatar}</div>
+            <div style={{ width: 28, height: 28, borderRadius: '50%', background: D.accentBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: D.accent, flexShrink: 0 }}>
+              {user?.email?.[0]?.toUpperCase()}
+            </div>
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 11, fontWeight: 600, color: D.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.nombre}</div>
-              <div style={{ fontSize: 9, color: D.textLight }}>Admin</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: D.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {user?.email?.split('@')[0]}
+              </div>
+              <div style={{ fontSize: 9, color: D.textLight }}>
+                {user?.email}
+              </div>
             </div>
           </div>
           <button onClick={onLogout} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', background: 'none', border: 'none', color: D.textMuted, fontSize: 12, cursor: 'pointer', width: '100%', borderRadius: 8, transition: 'all 0.15s' }}
@@ -88,19 +89,13 @@ export default function MainLayout({ onLogout }) {
         </div>
       </aside>
 
-      {/* Main area */}
       <div style={{ flex: 1, marginLeft: 220, display: 'flex', flexDirection: 'column' }}>
-
-        {/* Topbar */}
         <header style={{ background: D.bg, borderBottom: `1px solid ${D.border}`, padding: '10px 28px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 8, position: 'sticky', top: 0, zIndex: 10, transition: 'all 0.3s' }}>
-
-          {/* Notificaciones */}
           <div style={{ position: 'relative' }}>
             <button onClick={() => setShowNotif(!showNotif)} style={{ width: 34, height: 34, borderRadius: 8, border: `1px solid ${D.border}`, background: D.surface, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: D.textMuted, position: 'relative' }}>
               <Bell size={15} />
               {notifications.length > 0 && <span style={{ position: 'absolute', top: 6, right: 6, width: 7, height: 7, borderRadius: '50%', background: '#dc2626' }} />}
             </button>
-
             {showNotif && (
               <div style={{ position: 'absolute', right: 0, top: 42, width: 300, background: D.bg, border: `1px solid ${D.border}`, borderRadius: 10, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 100, overflow: 'hidden' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 14px', borderBottom: `1px solid ${D.border}` }}>
@@ -119,8 +114,6 @@ export default function MainLayout({ onLogout }) {
               </div>
             )}
           </div>
-
-          {/* Dark mode */}
           <button onClick={() => setDarkMode(!darkMode)} style={{ width: 34, height: 34, borderRadius: 8, border: `1px solid ${D.border}`, background: D.surface, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: D.textMuted }}>
             {darkMode ? <Sun size={15} /> : <Moon size={15} />}
           </button>
