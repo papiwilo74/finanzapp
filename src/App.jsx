@@ -7,6 +7,8 @@ import Transacciones from "./pages/Transacciones"
 import Categorias from "./pages/Categorias"
 import Presupuestos from "./pages/Presupuestos"
 import Metas from "./pages/Metas"
+import Asistente from "./pages/Asistente"
+
 
 function AppRoutes() {
   const { user, loading } = useFinanzas()
@@ -31,6 +33,7 @@ function AppRoutes() {
         <Route path="categorias" element={<Categorias />} />
         <Route path="presupuestos" element={<Presupuestos />} />
         <Route path="metas" element={<Metas />} />
+        <Route path="asistente" element={<Asistente />} />
       </Route>
     </Routes>
   )

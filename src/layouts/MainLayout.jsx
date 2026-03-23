@@ -2,6 +2,7 @@ import { Outlet, Link, useLocation } from "react-router-dom"
 import { useState } from "react"
 import { useFinanzas } from "../context/FinanzasContext"
 import { LayoutDashboard, ArrowLeftRight, PieChart, Target, Wallet, LogOut, Moon, Sun, Bell, X, ChevronDown } from "lucide-react"
+import { Sparkles } from "lucide-react"
 
 export default function MainLayout({ onLogout }) {
   const location = useLocation()
@@ -24,6 +25,7 @@ export default function MainLayout({ onLogout }) {
     { path: '/categorias', Icon: PieChart, label: 'Categorías' },
     { path: '/presupuestos', Icon: Wallet, label: 'Presupuestos' },
     { path: '/metas', Icon: Target, label: 'Metas' },
+    { path: '/asistente', Icon: Sparkles, label: 'Asistente IA' },
   ]
   const isActive = (p) => p === '/' ? location.pathname === '/' : location.pathname.startsWith(p)
 
