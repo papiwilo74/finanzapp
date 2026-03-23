@@ -65,13 +65,10 @@ Responde de forma concisa, amigable y con emojis. Da consejos específicos basad
     setLoading(true)
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': import.meta.env.VITE_ANTHROPIC_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-allow-browser': 'true'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'claude-haiku-4-5-20251001',
@@ -94,8 +91,6 @@ Responde de forma concisa, amigable y con emojis. Da consejos específicos basad
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 120px)' }}>
-
-      {/* Header */}
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -111,14 +106,12 @@ Responde de forma concisa, amigable y con emojis. Da consejos específicos basad
         </div>
       </div>
 
-      {/* Sugerencias */}
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
         {SUGERENCIAS.map(s => (
           <button key={s} onClick={() => sendMessage(s)} style={{ padding: '5px 10px', background: D.accentBg, border: `1px solid ${D.accent}22`, borderRadius: 100, fontSize: 11, color: D.accent, cursor: 'pointer', fontWeight: 500, whiteSpace: 'nowrap' }}>{s}</button>
         ))}
       </div>
 
-      {/* Chat */}
       <div style={{ flex: 1, overflowY: 'auto', background: D.bg, border: `1px solid ${D.border}`, borderRadius: 10, padding: 16, marginBottom: 12 }}>
         {messages.map((m, i) => (
           <div key={i} style={{ display: 'flex', gap: 10, marginBottom: 16, flexDirection: m.role === 'user' ? 'row-reverse' : 'row' }}>
@@ -145,15 +138,8 @@ Responde de forma concisa, amigable y con emojis. Da consejos específicos basad
         <div ref={bottomRef} />
       </div>
 
-      {/* Input */}
       <div style={{ display: 'flex', gap: 8 }}>
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && sendMessage()}
-          placeholder="Pregúntame sobre tus finanzas..."
-          style={{ flex: 1, padding: '10px 14px', background: D.bg, border: `1px solid ${D.border}`, borderRadius: 8, fontSize: 13, color: D.text, outline: 'none' }}
-        />
+        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && sendMessage()} placeholder="Pregúntame sobre tus finanzas..." style={{ flex: 1, padding: '10px 14px', background: D.bg, border: `1px solid ${D.border}`, borderRadius: 8, fontSize: 13, color: D.text, outline: 'none' }} />
         <button onClick={() => sendMessage()} disabled={loading || !input.trim()} style={{ width: 42, height: 42, borderRadius: 8, background: D.accent, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: loading || !input.trim() ? 0.5 : 1 }}>
           <Send size={16} color="#fff" />
         </button>
