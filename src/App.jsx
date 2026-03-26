@@ -7,8 +7,7 @@ import Transacciones from "./pages/Transacciones"
 import Categorias from "./pages/Categorias"
 import Presupuestos from "./pages/Presupuestos"
 import Metas from "./pages/Metas"
-import Asistente from "./pages/Asistente"
-
+import Perfil from "./pages/Perfil"
 
 function AppRoutes() {
   const { user, loading } = useFinanzas()
@@ -33,8 +32,7 @@ function AppRoutes() {
         <Route path="categorias" element={<Categorias />} />
         <Route path="presupuestos" element={<Presupuestos />} />
         <Route path="metas" element={<Metas />} />
-        
-
+        <Route path="perfil" element={<Perfil />} />
       </Route>
     </Routes>
   )
